@@ -23,6 +23,7 @@ doc/api/
 # DS_Store
 .DS_Store
 node_modules
+node_modules copy
 
 # expo
 .expo
