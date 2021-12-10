@@ -9,12 +9,11 @@
   },
   "dependencies": {
     "@expo/metro-config": "^0.1.48",
-    "@react-native-community/async-storage": "^1.12.1",
     "@tensorflow-models/coco-ssd": "^2.2.1",
     "@tensorflow/tfjs": "^2.8.3",
     "@tensorflow/tfjs-react-native": "^0.5.0",
     "axios": "^0.21.1",
-    "expo": "^39.0.5",
+    "expo": "^41.0.0",
     "expo-camera": "~9.0.0",
     "expo-constants": "~9.2.0",
     "expo-gl": "~9.1.1",
@@ -32,7 +31,8 @@
     "react-native-screens": "~2.10.1",
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.3",
-    "react-navigation-drawer": "^2.6.0"
+    "react-navigation-drawer": "^2.6.0",
+    "@react-native-async-storage/async-storage": "^1.13.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
