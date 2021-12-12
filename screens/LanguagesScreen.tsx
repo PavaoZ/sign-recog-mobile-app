@@ -1,23 +1,19 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
+import Languages from "../components/languages/Languages";
 import { Text, View } from "../components/Themed";
-import Welcome from "../components/Welcome";
-import { RootTabScreenProps } from "../types";
 
-export default function TabOneScreen({
-  navigation,
-}: RootTabScreenProps<"TabOne">) {
+export default function LanguagesScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Handatalk!</Text>
+      <Text style={styles.title}>Available languages</Text>
       <View
         style={styles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <Welcome />
+      <Languages />
     </View>
   );
 }
