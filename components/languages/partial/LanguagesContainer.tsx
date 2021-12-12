@@ -13,23 +13,6 @@ const languagesList = [
   "Serbian",
   "French",
   "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
-  "Armenian",
 ];
 
 export default function LanguagesContainer() {
