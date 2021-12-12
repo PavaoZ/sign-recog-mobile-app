@@ -1,12 +1,11 @@
-import * as WebBrowser from "expo-web-browser";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, TextInput } from "react-native";
 import { Text, View } from "../Themed";
 import LanguagesContainer from "./partial/LanguagesContainer";
 
 export default function Languages() {
   return (
-    <View>
+    <ScrollView>
       <View style={styles.languagesIntroContainer}>
         <Text
           style={styles.languagesIntroText}
@@ -17,13 +16,14 @@ export default function Languages() {
         </Text>
       </View>
       <LanguagesContainer />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   languagesIntroContainer: {
     alignItems: "center",
+    justifyContent: "center",
     marginHorizontal: 50,
   },
   languagesIntroText: {

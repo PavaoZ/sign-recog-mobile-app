@@ -120,7 +120,7 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={LanguagesScreen}
         options={{
-          title: "Languages",
+          title: "",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="language" color={color} />
           ),
