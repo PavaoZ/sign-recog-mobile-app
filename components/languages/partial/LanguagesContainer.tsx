@@ -29,8 +29,8 @@ export default function LanguagesContainer() {
         <ScrollView>
           <View style={styles.languageList}>
             <>
-              {languagesList.map((language) => (
-                <Language name={language} />
+              {languagesList.map((language, index) => (
+                <Language name={language} key={index} />
               ))}
             </>
           </View>

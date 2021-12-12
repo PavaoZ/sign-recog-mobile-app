@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
   singleLanguageContainer: {
     padding: 10,
     margin: 5,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "lightgray",
   },
   languageName: {
     fontSize: 17,
