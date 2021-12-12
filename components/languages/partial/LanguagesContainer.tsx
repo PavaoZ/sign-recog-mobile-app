@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput } from "react-native";
+import { ScrollView, StyleSheet, TextInput } from "react-native";
 import { View } from "../../Themed";
 import Language from "./Language";
 
@@ -12,6 +12,23 @@ const languagesList = [
   "Bosnian",
   "Serbian",
   "French",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
+  "Armenian",
   "Armenian",
 ];
 
@@ -26,13 +43,15 @@ export default function LanguagesContainer() {
           onChangeText={(text) => setLanguageSearchText(text)}
           defaultValue={languageSearchText}
         />
-        <View style={styles.languageList}>
-          <>
-            {languagesList.map((language) => (
-              <Language name={language} />
-            ))}
-          </>
-        </View>
+        <ScrollView>
+          <View style={styles.languageList}>
+            <>
+              {languagesList.map((language) => (
+                <Language name={language} />
+              ))}
+            </>
+          </View>
+        </ScrollView>
       </View>
     </View>
   );

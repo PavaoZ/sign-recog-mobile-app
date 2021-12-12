@@ -85,7 +85,7 @@ function BottomTabNavigator() {
         name="TabOne"
         component={WelcomeScreen}
         options={{
-          title: "Welcome",
+          title: "",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="file-text-o" color={color} />
           ),
@@ -130,7 +130,7 @@ function BottomTabNavigator() {
         name="TabThree"
         component={FeedbackScreen}
         options={{
-          title: "Feedback",
+          title: "",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="question" color={color} />
           ),

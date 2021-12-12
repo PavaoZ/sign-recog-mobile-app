@@ -1,11 +1,11 @@
 import React from "react";
-import { ScrollView, StyleSheet, TextInput } from "react-native";
+import { StyleSheet } from "react-native";
 import { Text, View } from "../Themed";
 import LanguagesContainer from "./partial/LanguagesContainer";
 
 export default function Languages() {
   return (
-    <ScrollView>
+    <View>
       <View style={styles.languagesIntroContainer}>
         <Text
           style={styles.languagesIntroText}
@@ -16,14 +16,12 @@ export default function Languages() {
         </Text>
       </View>
       <LanguagesContainer />
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   languagesIntroContainer: {
-    alignItems: "center",
-    justifyContent: "center",
     marginHorizontal: 50,
   },
   languagesIntroText: {
