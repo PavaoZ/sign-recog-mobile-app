@@ -1,12 +1,20 @@
-import React from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useState } from "react";
+import { Alert, Modal, Pressable, StyleSheet } from "react-native";
 import { Text, View } from "../../Themed";
 
+// const LanguageStack = createNativeStackNavigator();
+
 const Language = (props: { name: string }) => {
+  //   const [languageModalVisible, setLanguageModalVisible] = useState(false);
+
   return (
     <View style={styles.singleLanguageContainer}>
       <Pressable
-        onPress={() => console.log("askdkasd")}
+        onPress={() => {
+          console.log("askdkasd");
+          //   setLanguageModalVisible(true);
+        }}
         style={({ pressed }) => ({
           opacity: pressed ? 0.5 : 1,
         })}
@@ -19,6 +27,19 @@ const Language = (props: { name: string }) => {
           {props.name}
         </Text>
       </Pressable>
+      {/* <Modal
+        animationType="slide"
+        transparent={true}
+        visible={languageModalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setLanguageModalVisible(!languageModalVisible);
+        }}
+      >
+        <View>
+          <Text>kasksdkfksdfk</Text>
+        </View>
+      </Modal> */}
     </View>
   );
 };

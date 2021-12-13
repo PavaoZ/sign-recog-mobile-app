@@ -12,7 +12,7 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName } from "react-native";
+import { ColorSchemeName, Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -21,7 +21,11 @@ import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import LanguagesScreen from "../screens/LanguagesScreen";
-import { RootStackParamList, RootTabParamList } from "../types";
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation({
@@ -93,9 +97,9 @@ function BottomTabNavigator() {
       />
       {/* <BottomTab.Screen
         name="TabOne"
-        component={TabOneScreen}
+        component={WelcomeScreen}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Welcome",
+          title: "",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="file-text-o" color={color} />
           ),
