@@ -63,7 +63,11 @@ function RootNavigator() {
         options={{ title: "Oops!" }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen
+          name="Modal"
+          options={{ title: "" }}
+          component={ModalScreen}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -90,6 +94,7 @@ function BottomTabNavigator() {
         component={WelcomeScreen}
         options={{
           title: "",
+          tabBarLabel: "Welcome",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="file-text-o" color={color} />
           ),
@@ -125,6 +130,7 @@ function BottomTabNavigator() {
         component={LanguagesScreen}
         options={{
           title: "",
+          tabBarLabel: "Languages",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="language" color={color} />
           ),
@@ -135,6 +141,7 @@ function BottomTabNavigator() {
         component={FeedbackScreen}
         options={{
           title: "",
+          tabBarLabel: "Feedback",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="question" color={color} />
           ),

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, TextInput } from "react-native";
 import { View } from "../../Themed";
 import Language from "./Language";
 
-const languagesList = [
+const returnedLanguagesList = [
   "American",
   "Chinese",
   "Korean",
@@ -17,13 +17,31 @@ const languagesList = [
 
 export default function LanguagesContainer() {
   const [languageSearchText, setLanguageSearchText] = useState("");
+  const [languagesList, setLanguagesList] = useState(returnedLanguagesList);
+
+  const searchForLanguages = () => {
+    setLanguagesList(
+      returnedLanguagesList.filter((language) => {
+        return language.includes(languageSearchText);
+      })
+    );
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      searchForLanguages();
+    }, 500);
+  }, [languageSearchText]);
+
   return (
     <View>
       <View style={styles.languagesContainer}>
         <TextInput
           style={{ height: 40, marginTop: 15 }}
           placeholder="Type here to search for languages"
-          onChangeText={(text) => setLanguageSearchText(text)}
+          onChangeText={(text) => {
+            setLanguageSearchText(text);
+          }}
           defaultValue={languageSearchText}
         />
         <ScrollView>
