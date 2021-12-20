@@ -20,6 +20,7 @@ export default function ModalScreen({ route }) {
   const [isModelReady, setModelReady] = useState(true);
   const [model, setModel] = useState(null);
   const [image, setImage]: any = useState(null);
+  const [imageProcessingResult, setImageProcessingResult]: any = useState(null);
   const [predictions, setPredictions] = useState(null);
 
   const options = {
@@ -42,6 +43,7 @@ export default function ModalScreen({ route }) {
   }, []);
 
   const launchCamera = async () => {
+    setImageProcessingResult(null);
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     if (status === "granted") {
       const response: any = await ImagePicker.launchCameraAsync(options);
@@ -50,6 +52,7 @@ export default function ModalScreen({ route }) {
   };
 
   const launchImageLibrary = async () => {
+    setImageProcessingResult(null);
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status === "granted") {
       const response: any = await ImagePicker.launchImageLibraryAsync(options);
@@ -89,7 +92,10 @@ export default function ModalScreen({ route }) {
 
       if (response.ok) {
         let json = await response.json();
-        console.log(json);
+        setImage(null);
+        setImageProcessingResult(json.result);
+        // console.log(json.result);
+        // console.log(imageProcessingResult);
       } else {
         console.log("Not OK");
       }
@@ -191,6 +197,28 @@ export default function ModalScreen({ route }) {
             </View>
           </View>
         ) : null}
+        {imageProcessingResult ? (
+          <View style={{ marginTop: 30 }}>
+            <View>
+              <Text
+                style={styles.resultTitle}
+                lightColor="rgba(0,0,0,0.8)"
+                darkColor="rgba(255,255,255,0.8)"
+              >
+                The result is
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={styles.resultTitle}
+                lightColor="rgba(0,0,0,0.8)"
+                darkColor="rgba(255,255,255,0.8)"
+              >
+                {imageProcessingResult}
+              </Text>
+            </View>
+          </View>
+        ) : null}
       </View>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
@@ -205,6 +233,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  resultTitle: {
+    textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",
   },
