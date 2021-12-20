@@ -42,39 +42,62 @@ export default function ModalScreen({ route }) {
   }, []);
 
   const launchCamera = async () => {
-    const response: any = await ImagePicker.launchCameraAsync(options);
-    handleImageResponse(response);
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status === "granted") {
+      const response: any = await ImagePicker.launchCameraAsync(options);
+      handleImageResponse(response);
+    }
   };
 
   const launchImageLibrary = async () => {
-    let response: any = await ImagePicker.launchImageLibraryAsync(options);
-    handleImageResponse(response);
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status === "granted") {
+      const response: any = await ImagePicker.launchImageLibraryAsync(options);
+      handleImageResponse(response);
+    }
   };
 
   const handleImageResponse = (response: any) => {
-    console.log(response.uri);
     if (response.cancelled) {
       setImage(null);
     } else {
-      setImage(response.uri);
+      setImage(response);
     }
   };
 
   const sendToImageProcessing = async () => {
-    // this.setImageLoadingState({ isLoading: true });
+    let formData = new FormData();
 
+    let match = /\.(\w+)$/.exec(image.uri.split("/").pop());
+    let mimetype = match ? `image/${match[1]}` : `image`;
+
+    formData.append("uri", image.uri);
+    formData.append("name", image.uri.split("/").pop());
+    formData.append("mimetype", mimetype);
+    // formData.append("base64", image.base64);
+    formData.append("language", language);
+
+    try {
+      // let response = await fetch("http://127.0.0.1:5000/process-image", {
+      let response = await fetch("http://192.168.0.15:5000/process-image", {
+        method: "POST",
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        let json = await response.json();
+        console.log(json);
+      } else {
+        console.log("Not OK");
+      }
+    } catch (error) {
+      console.error(error);
+    }
     // We would need to send image base64 or BLOB for full functionality
-    let response = await fetch("http://2495a2dcf2e5.ngrok.io/process-image", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        image_path: "yourValue",
-      }),
-    });
-    let json = await response.json();
+    // let response = await fetch("http://2495a2dcf2e5.ngrok.io/process-image", {
 
     // this.setImageLoadingState({ isLoading: false });
 
@@ -97,7 +120,6 @@ export default function ModalScreen({ route }) {
         >
           <Pressable
             onPress={() => {
-              console.log("askdkaCDCDCDDCDsd");
               launchCamera();
             }}
             style={({ pressed }) => ({
@@ -120,7 +142,6 @@ export default function ModalScreen({ route }) {
         >
           <Pressable
             onPress={() => {
-              console.log("askdkaCDCDCDDCDsd");
               launchImageLibrary();
             }}
             style={({ pressed }) => ({
@@ -145,7 +166,7 @@ export default function ModalScreen({ route }) {
             >
               <Pressable
                 onPress={() => {
-                  console.log("askdkaCDCDCDDCDsd");
+                  sendToImageProcessing();
                 }}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
@@ -163,7 +184,7 @@ export default function ModalScreen({ route }) {
             <View style={styles.imageSection}>
               <View style={{ margin: "auto", justifyContent: "center" }}>
                 <Image
-                  source={{ uri: image }}
+                  source={{ uri: image.uri }}
                   style={styles.recognitionImage}
                 />
               </View>
