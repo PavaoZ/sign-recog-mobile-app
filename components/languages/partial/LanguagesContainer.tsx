@@ -5,14 +5,14 @@ import Language from "./Language";
 
 const returnedLanguagesList = [
   "American",
-  "Chinese",
-  "Korean",
-  "Russian",
-  "dasd",
-  "Bosnian",
-  "Serbian",
-  "French",
-  "Armenian",
+  // "Chinese",
+  // "Korean",
+  // "Russian",
+  // "dasd",
+  // "Bosnian",
+  // "Serbian",
+  // "French",
+  // "Armenian",
 ];
 
 export default function LanguagesContainer() {
