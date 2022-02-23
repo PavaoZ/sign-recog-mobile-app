@@ -13,7 +13,7 @@ import { Text, View } from "../components/Themed";
 import { useEffect, useState } from "react";
 import * as FS from "expo-file-system";
 
-export default function ModalScreen({ route }) {
+export default function ModalScreen({ route }: any) {
   const { language } = route.params;
 
   const [imageList, setImageList] = useState([]);
@@ -72,7 +72,7 @@ export default function ModalScreen({ route }) {
   const sendToImageProcessing = async () => {
     try {
       let response = await FS.uploadAsync(
-        "https://afraid-falcon-45.loca.lt/process-image",
+        "https://lovely-walrus-71.loca.lt/process-image",
         image.uri,
         {
           httpMethod: "POST",
