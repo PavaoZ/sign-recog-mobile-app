@@ -72,7 +72,7 @@ export default function ModalScreen({ route }) {
   const sendToImageProcessing = async () => {
     try {
       let response = await FS.uploadAsync(
-        "https://old-termite-43.loca.lt/process-image",
+        "https://afraid-falcon-45.loca.lt/process-image",
         image.uri,
         {
           httpMethod: "POST",
