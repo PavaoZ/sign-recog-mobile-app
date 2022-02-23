@@ -72,7 +72,7 @@ export default function ModalScreen({ route }) {
   const sendToImageProcessing = async () => {
     try {
       let response = await FS.uploadAsync(
-        "https://happy-starfish-26.loca.lt/process-image",
+        "https://old-termite-43.loca.lt/process-image",
         image.uri,
         {
           httpMethod: "POST",
@@ -83,8 +83,6 @@ export default function ModalScreen({ route }) {
         }
       );
 
-      console.log(response);
-      console.log(response.status);
       if (response.status === 200) {
         let responseData = JSON.parse(response.body).result;
         setImage(null);
@@ -196,29 +194,25 @@ export default function ModalScreen({ route }) {
               </Text>
             </View>
             <View>
-              {imageProcessingResult.labels.map(
+              {imageProcessingResult.detections.labels.map(
                 (result: any, index: number) => {
                   return (
-                    <Text
-                      style={styles.resultTitle}
-                      lightColor="rgba(0,0,0,0.8)"
-                      darkColor="rgba(255,255,255,0.8)"
-                    >
-                      {result}
-                    </Text>
-                  );
-                }
-              )}
-              {imageProcessingResult.scores.map(
-                (result: any, index: number) => {
-                  return (
-                    <Text
-                      style={styles.resultTitle}
-                      lightColor="rgba(0,0,0,0.8)"
-                      darkColor="rgba(255,255,255,0.8)"
-                    >
-                      {result}
-                    </Text>
+                    <View key={result.Label}>
+                      <Text
+                        style={styles.resultTitle}
+                        lightColor="rgba(0,0,0,0.8)"
+                        darkColor="rgba(255,255,255,0.8)"
+                      >
+                        {result.Label}
+                      </Text>
+                      <Text
+                        style={styles.resultTitle}
+                        lightColor="rgba(0,0,0,0.8)"
+                        darkColor="rgba(255,255,255,0.8)"
+                      >
+                        {(result.confidence * 100).toFixed(2)}%
+                      </Text>
+                    </View>
                   );
                 }
               )}
